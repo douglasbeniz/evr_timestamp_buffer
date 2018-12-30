@@ -59,7 +59,21 @@ record(stringin, "$(SYS)$(DRIVEID)Ref_Unix_stringin")
     field(INP,  "@%s.%09f")
     field(TSEL, "$(BEAMPULSE_EVENT_LINK).TIME")
     field(DTYP, "Soft Timestamp")
-    field(FLNK, "$(SYS)$(DRIVEID)Ref_Unix")
+    field(FLNK, "$(SYS)$(DRIVEID)Ref_Unix_asub.PROC")
+}
+
+# Beampulse timestamp
+# Needs forward link from softEvent template of beam pulse event.
+record(aSub, "$(SYS)$(DRIVEID)Ref_Unix_asub")
+{
+    field(DESC, "Timestamp in nano seconds")
+    field(SNAM, "nano_second_timestamp")
+    field(INPA, "$(BEAMPULSE_EVENT_LINK)")
+    field(FTVA, "INT64")
+    field(FTVB, "INT64")
+    field(FTVC, "INT64")
+    field(NOVA, "1")
+    field(FLNK, "$(SYS)$(DRIVEID)Ref_Unix.PROC")
 }
 
 # Beampulse timestamp
@@ -111,3 +125,8 @@ record(waveform, "$(SYS)$(DRIVEID)PulseTS")
     field(TSEL, "$(BEAMPULSE_EVENT_LINK).TIME")
 }
 
+# test of 64 bit integer
+record(int64in, "$(SYS)$(DRIVEID)_int64in")
+{
+    field(DESC, "64 bit integer")
+}
